@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Search Post{% endblock %}
+
+{% block content %}
+
+{% for result in results %}
+   
+    <a href="{% url 'article-detail' result.pk %}">{{result}}</a> <br>
+    
+
+{% endfor %}
+
+
+{% endblock %}

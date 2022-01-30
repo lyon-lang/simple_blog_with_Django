@@ -1,0 +1,67 @@
+.subscribe {
+  color: #ffc0cb
+}
+
+.align-self-center {
+  text-align:center;
+}
+
+#know_more {
+  color:#717D7E;
+}
+
+.brandname {
+  color:#717D7E;
+}
+
+#social {
+  margin-right:2px;
+  margin-left:2px;
+  font-size:24px;
+}
+
+.postlist {
+  display:initial;
+}
+
+.catimage {
+  margin-right:5px;
+  margin-left:5px;
+  display:inline-block;
+}
+
+.mainhr {
+  border-top:2px solid #5DADE2;
+}
+
+.plist {
+  display:block;
+}
+
+#hlview {
+  display:inline-block;
+  text-decoration:none;
+}
+
+#hlview a{
+  text-decoration: none;
+}
+
+#cat {
+  list-style:none;
+}
+
+.catlist {
+  display:inline-block;
+  color:#5DADE2;
+}
+
+a {
+  text-decoration: none;
+}
+
+#latest{
+  text-decoration: none;
+  color: #808080;
+}
+

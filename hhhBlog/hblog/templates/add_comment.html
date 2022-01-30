@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Add a New Comment{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h1>Add Comment</h1>
+
+    <br><br>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Add Comment</button>
+        </form>
+    </div>
+
+    <script>
+        var name = "{{ user.first_name }} {{ user.last_name }}";
+        document.getElementById("CommentedUser").value = name;
+    </script>
+
+{% else %}
+    <h1>Please login to comment</h1>  
+
+{% endif %}
+
+{% endblock %}

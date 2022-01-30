@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-9 col-lg-9">
+    <img src="{% static 'hhhBlog/images/h.JPG' %}">
+    <p><strong>The Latest</strong></p>
+   
+    
+    {% for post in object_list %}
+    <hr>
+    <div >
+      <a href="{% url 'article-detail' post.pk %}" class="row" id="latest">
+
+        <div class="col-md-3" >
+
+          <h4>{{post.title}}</h4>
+          {{ post.post_date }}
+        </div>
+        <div class="col-md-3" >
+    
+          {{ post.snippet|safe }}
+        </div>
+        <div class="col-md-3" >
+    
+          {% if post.header_image %}
+            <img src="{{post.header_image.url}}" height="150" width= "250" >
+          {% endif %}
+        </div>
+      </a>
+      
+    </div>
+<!--     
+    <a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
+      - {{ post.post_date }} <small> -->
+          {% if user.is_authenticated %}
+              {% if user.id == post.author.id %}
+              
+                  - <a href="{% url 'update_post' post.pk %}">Edit</a>
+                  <a href="{% url 'delete_post' post.pk %}">Delete</a>
+                  
+                  {% endif %}
+                  {% endif %}
+              </small>
+    {% endfor %}
+      
+    
+  </div>
+  <div class="col-md-3 col-lg-3">
+    <h4>Tell the world I am coming Home!</h4>
+    <!-- <div class="catimage"><img src="{% static 'hhhBlog/images/bbbbb.JPG' %}"></div> -->
+    
+    <!-- <div><i class="fa fa-search"></i></div> -->
+  </div>
+</div>
+
+<hr>
+      
+
+<!-- <h1>Post</h1>
+<ul>
+    
+{% for post in object_list %}
+    <li><a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>- <a href="{% url 'category' post.category|slugify %}"> {{post.category}}</a> -
+        {{post.author.first_name}} {{post.author.last_name}} - {{ post.post_date }} <small>
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
+                    - <a href="{% url 'update_post' post.pk %}">Edit</a>
+                    <a href="{% url 'delete_post' post.pk %}">Delete</a>
+                {% endif %}
+            {% endif %}
+        </small><br>
+        {{post.snippet}}</li>
+
+{% endfor %}
+</ul> -->
+
+
+
+{% endblock %}

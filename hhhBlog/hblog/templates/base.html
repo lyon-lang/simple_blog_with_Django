@@ -1,0 +1,179 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'hhhBlog/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hhhBlog/css/scondnav.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Footer-Clean.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'hhhBlog/boostrap/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hhhBlog/boostrap/bootstrap.min.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
+    <title>{% block title %}Discover the best in Africa{% endblock %}</title>
+  </head>
+  <body>
+  
+      
+   
+      
+      <script data-ad-client="ca-pub-8733294282103057" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <a class="navbar-brand" href="{% url 'home'%}"> <img src="{% static 'hhhBlog/images/toptenafrica.png' %}" width="70" height="50" ></a>
+
+        <ul class="navbar-nav ml-auto" id="hview">
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown" id="hlview">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <!-- {% if user.profile.profile_pic %}
+                <img src="{{ user.profile.profile_pic.url}}" width="50" height="50" class="rounded-circle">
+              {% else %}
+                <img src="{% static 'hhhBlog/images/default_profile_pic.png' %}" width="50" height="50" class="rounded-circle">
+    
+              {% endif %} -->
+              
+              {{user.first_name}} {{user.last_name}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+              <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a>
+              {% if user.profile.id %}
+                <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile page</a>
+                <a class="dropdown-item" href="{% url 'profile_page' user.profile.id %}">Show Profile</a>
+              {% else %}
+                <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile page</a>
+              {% endif %}
+
+          
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+           
+
+            </div>
+          </li>
+          {% if user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link"  href="{% url 'add_post' %}">Add Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+
+          </li>
+         
+          {% endif %}
+          
+        
+            
+            
+            
+
+         
+
+        {% else %}
+        <a class="nav-link" href="{% url 'login' %}">
+          <li class="subscribe">
+          <b>Log In</b>
+          </li></a>  
+        <a class="nav-link" href="{% url 'register' %}">
+          <li id="hlview">
+          <b>Join Us  </b>
+          </li></a> 
+        
+        {% endif %}
+
+        
+            
+        </ul>
+          {% if user.is_authenticated %}
+            
+
+          
+         
+          {% endif %}
+        
+      </nav>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="align-self-center" id="cat">
+            {% if cat_menu %}
+              {% for item in cat_menu %}
+              
+              <a href="{% url 'category' item|slugify %}"><li class="catlist">{{ item|upper }}</li></a>
+              {% endfor %}
+            {% else %}
+         
+            <a href="{% url 'category_list' %}"><li class="catlist">CATEGORIES</li></a>
+            {% endif %}
+           
+            
+            
+            <a href="shop.html"><li class="catlist">SHOP</li></a>
+            <a href="review.html"><li class="catlist">REVIEW</li></a>
+          </ul>
+        </div>
+      </div>
+
+      {% block content %}
+
+      {% endblock %}
+
+
+    </div>
+    <br>
+    <div class="footer-clean">
+      <footer>
+          <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-sm-4 col-md-3 item">
+                      <h3>Services</h3>
+                      <ul>
+                          <li><a href="#">Web design</a></li>
+                          <li><a href="#">Development</a></li>
+                          <li><a href="#">Hosting</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-sm-4 col-md-3 item">
+                      <h3>About</h3>
+                      <ul>
+                          <li><a href="#">Company</a></li>
+                          <li><a href="#">Team</a></li>
+                          <li><a href="#">Legacy</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-sm-4 col-md-3 item">
+                      <h3>Careers</h3>
+                      <ul>
+                          <li><a href="#">Job openings</a></li>
+                          <li><a href="#">Employee success</a></li>
+                          <li><a href="#">Benefits</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                      <p class="copyright">Top10Africa © 2021</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+  </div>
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+  </body>
+</html>
